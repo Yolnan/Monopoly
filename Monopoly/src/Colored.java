@@ -1,13 +1,10 @@
 import java.util.*;
 public class Colored extends Purchaseable {
-	public Colored(String n, int i) {
+	public Colored(String n, int i, int p, boolean b) {
 		name = n;
 		index = i;
+		price = p;
+		purchased = b;
 	}
-	public String getName() {
-		return name;
-	}
-	public int getIndex() {
-		return index;
-	}
+	
 }
