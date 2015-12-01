@@ -8,7 +8,4 @@ public class Nonpurchaseable extends Square {
 	public String getName() {
 		return name;
 	}
-	public int getIndex() {
-		return index;
-	}
 }

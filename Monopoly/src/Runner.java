@@ -11,6 +11,7 @@ public class Runner {
 		int dice2;
 		int roll;
 		int position = 0;
+		int wallet = 1500;
 		while(true) {
 			System.out.println("\nRoll Dice");
 			if(player.hasNextLine()) {
@@ -18,8 +19,43 @@ public class Runner {
 				dice1 = (int)(Math.random()*6 + 1);
 				dice2 = (int)(Math.random()*6 + 1);
 				roll = dice1 + dice2;
+				if((position + roll) >= 40) {
+					wallet += 200;
+					System.out.println("You received $200 for passing/landing on go");
+					System.out.println("Your balance is $" + wallet);
+				}
 				position = (position + roll)%40;
 				System.out.println("You rolled " + roll + "\tYou landed on " + board.get(position).getName());
+				if(board.get(position).getCanBuy() == true) {
+					if(board.get(position).getPurchased() == false) {
+						System.out.println("Buy " + board.get(position).getName() + " for $" + board.get(position).getPrice());
+						System.out.println("Press 1 to buy, enter any other number");
+						if(player.nextInt() == 1) {
+							if(wallet >= board.get(position).getPrice()) {
+								board.get(position).setPurchased(true);
+								wallet -= board.get(position).getPrice();
+								System.out.println("You bought " + board.get(position).getName());
+								System.out.println("Your balance is $" + wallet);
+							} else {
+								System.out.println("You do not have enough money");
+							}
+						} 
+					}
+				} else if(position == 4) {
+					if(wallet >= 200) {
+						wallet -= 200;
+						System.out.println("You paid ($200) Income Tax");
+					} else {
+						System.out.println("You do not have enough money to pay for Income Tax");
+					}
+				} else if(position == 38) {
+					if(wallet >= 100) {
+						wallet -= 100;
+						System.out.println("You paid ($100) Luxary Tax");
+					} else {
+						System.out.println("You do not have enough money to pay for Luxary Tax");
+					}
+				}
 			}
 		}
 	}
