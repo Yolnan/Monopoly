@@ -2,6 +2,7 @@ import java.util.*;
 public class Runner {
 	static Scanner player = new Scanner(System.in);
 	static ArrayList<Square> board = new ArrayList<Square>();
+	static ArrayList<String>ownedProp = new ArrayList<String>();
 	public static void main(String[] args) {
 		makeSquare();
 		play();
@@ -29,13 +30,18 @@ public class Runner {
 				if(board.get(position).getCanBuy() == true) {
 					if(board.get(position).getPurchased() == false) {
 						System.out.println("Buy " + board.get(position).getName() + " for $" + board.get(position).getPrice());
-						System.out.println("Press 1 to buy, enter any other number");
+						System.out.println("Press 1 to buy, else enter any other number");
 						if(player.nextInt() == 1) {
 							if(wallet >= board.get(position).getPrice()) {
 								board.get(position).setPurchased(true);
 								wallet -= board.get(position).getPrice();
 								System.out.println("You bought " + board.get(position).getName());
 								System.out.println("Your balance is $" + wallet);
+								System.out.println("Your Properties:");
+								ownedProp.add(new String(board.get(position).getName()));
+								for(String a: ownedProp) {
+									System.out.println(a);
+								}
 							} else {
 								System.out.println("You do not have enough money");
 							}
@@ -61,44 +67,44 @@ public class Runner {
 	}
 	public static void makeSquare() {
 		board.add(new Nonpurchaseable("Go", 0, false));
-		board.add(new Colored("Mediterranean Avenue", 1, 60, false, true));
+		board.add(new Colored("Swamp", 1, 60, false, true));
 		board.add(new Nonpurchaseable("Community Chest", 2, false));
-		board.add(new Colored("Baltic Avenue", 3, 60, false, true));
-		board.add(new Nonpurchaseable("Income Tax", 4, false));
-		board.add(new Noncolored("Reading Railroad", 5, 200, false, true));
-		board.add(new Colored("Oriental Avenue", 6, 100, false, true));
+		board.add(new Colored("Yoda's Hut", 3, 60, false, true));
+		board.add(new Nonpurchaseable("Docking Tax", 4, false));
+		board.add(new Noncolored("Tie Fighter", 5, 200, false, true));
+		board.add(new Colored("Echo Base", 6, 100, false, true));
 		board.add(new Nonpurchaseable("Chance", 7, false));
-		board.add(new Colored("Vermont Avenue", 8, 100, false, true));
-		board.add(new Colored("Connecticut Avenue", 9, 120, false, true));
+		board.add(new Colored("Frozen Plains", 8, 100, false, true));
+		board.add(new Colored("North Ridge", 9, 120, false, true));
 		board.add(new Nonpurchaseable("Jail", 10, false));
-		board.add(new Colored("St. Charles Place", 11, 140, false, true));
-		board.add(new Noncolored("Electic Company", 12, 150, false, true));
-		board.add(new Colored("States Avenue", 13, 140, false, true));
-		board.add(new Colored("Virginia Avenue", 14, 160, false, true));
-		board.add(new Noncolored("Pennsylvania Railroad", 15, 200, false, true));
-		board.add(new Colored("St. James Place", 16, 180, false, true));
+		board.add(new Colored("Lars Homestead", 11, 140, false, true));
+		board.add(new Noncolored("Reactor Core", 12, 150, false, true));
+		board.add(new Colored("Mos Eisley", 13, 140, false, true));
+		board.add(new Colored("Jabba's Palace", 14, 160, false, true));
+		board.add(new Noncolored("Millennium Falcon", 15, 200, false, true));
+		board.add(new Colored("War Room", 16, 180, false, true));
 		board.add(new Nonpurchaseable("Community Chest", 17, false));
-		board.add(new Colored("Tennesse Avenue", 18, 180, false, true));
-		board.add(new Colored("New York", 19, 200, false, true));
+		board.add(new Colored("Massassi Temple", 18, 180, false, true));
+		board.add(new Colored("Temple Throne Room", 19, 200, false, true));
 		board.add(new Nonpurchaseable("Parking", 20, false));
-		board.add(new Colored("Kentucky Avenue", 21, 220, false, true));
+		board.add(new Colored("Lando's Platform", 21, 220, false, true));
 		board.add(new Nonpurchaseable("Chance", 22, false));
-		board.add(new Colored("Indiana Avenue", 23, 220, false, true));
-		board.add(new Colored("Illinois Avenue", 24, 240, false, true));
-		board.add(new Noncolored("B & O Railroad", 25, 200,false, true));
-		board.add(new Colored("Atlantic Avenue", 26, 260, false, true));
-		board.add(new Colored("Ventura Avenue", 27, 260, false, true));
-		board.add(new Noncolored("Water Works", 28, 150, false, true));
-		board.add(new Colored("Market Gardens", 29, 280, false, true));
+		board.add(new Colored("Carbon Freezing Chamber", 23, 220, false, true));
+		board.add(new Colored("Reactor Control Room", 24, 240, false, true));
+		board.add(new Noncolored("X-Wing Fighter", 25, 200,false, true));
+		board.add(new Colored("Landing Bay", 26, 260, false, true));
+		board.add(new Colored("Throne Room", 27, 260, false, true));
+		board.add(new Noncolored("Moisture Farm", 28, 150, false, true));
+		board.add(new Colored("Central Control", 29, 280, false, true));
 		board.add(new Nonpurchaseable("Go To Jail", 30, false));
-		board.add(new Colored("Pacific Avenue", 31, 300, false, true));
-		board.add(new Colored("North Carolina Avenue", 32, 300,false, true));
+		board.add(new Colored("Forest", 31, 300, false, true));
+		board.add(new Colored("Shield Generator", 32, 300,false, true));
 		board.add(new Nonpurchaseable("Community Chest", 33, false));
-		board.add(new Colored("Pennsylvania Avenue", 34, 320, false, true));
-		board.add(new Noncolored("Short Line", 35, 200, false, true));
+		board.add(new Colored("Ewok Village", 34, 320, false, true));
+		board.add(new Noncolored("Star Destroyer", 35, 200, false, true));
 		board.add(new Nonpurchaseable("Chance", 36, false));
-		board.add(new Colored("Park Place", 37, 350, false, true));
-		board.add(new Nonpurchaseable("Luxary Tax", 38, false));
-		board.add(new Colored("Boardwalk", 39, 400, false, true));
+		board.add(new Colored("Monument Square", 37, 350, false, true));
+		board.add(new Nonpurchaseable("Bounty", 38, false));
+		board.add(new Colored("Imperial Palace", 39, 400, false, true));
 	} 
 }
