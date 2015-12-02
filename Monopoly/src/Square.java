@@ -10,17 +10,4 @@ public abstract class Square {
 	public boolean getCanBuy() {
 		return canBuy;
 	}
-	
-	//Not sure
-	protected boolean purchased;
-	public boolean getPurchased() {
-		return purchased;
-	}
-	public void setPurchased(boolean purchased) {
-		this.purchased = purchased;
-	}
-	protected int price;
-	public int getPrice() {
-		return price;
-	}
 }

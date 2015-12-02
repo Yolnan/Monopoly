@@ -28,13 +28,13 @@ public class Runner {
 				position = (position + roll)%40;
 				System.out.println("You rolled " + roll + "\tYou landed on " + board.get(position).getName());
 				if(board.get(position).getCanBuy() == true) {
-					if(board.get(position).getPurchased() == false) {
-						System.out.println("Buy " + board.get(position).getName() + " for $" + board.get(position).getPrice());
+					if(((Purchaseable) board.get(position)).getPurchased() == false) {
+						System.out.println("Buy " + board.get(position).getName() + " for $" + ((Purchaseable) board.get(position)).getPrice());
 						System.out.println("Press 1 to buy, else enter any other number");
 						if(player.nextInt() == 1) {
-							if(wallet >= board.get(position).getPrice()) {
-								board.get(position).setPurchased(true);
-								wallet -= board.get(position).getPrice();
+							if(wallet >= ((Purchaseable) board.get(position)).getPrice()) {
+								((Purchaseable) board.get(position)).setPurchased(true);
+								wallet -= ((Purchaseable) board.get(position)).getPrice();
 								System.out.println("You bought " + board.get(position).getName());
 								System.out.println("Your balance is $" + wallet);
 								System.out.println("Your Properties:");
@@ -67,15 +67,15 @@ public class Runner {
 	}
 	public static void makeSquare() {
 		board.add(new Nonpurchaseable("Go", 0, false));
-		board.add(new Colored("Swamp", 1, 60, false, true));
+		board.add(new Colored("Swamp", "Degobah", 1, 60, false, true));
 		board.add(new Nonpurchaseable("Community Chest", 2, false));
-		board.add(new Colored("Yoda's Hut", 3, 60, false, true));
+		board.add(new Colored("Yoda's Hut", "Degobah", 3, 60, false, true));
 		board.add(new Nonpurchaseable("Docking Tax", 4, false));
 		board.add(new Noncolored("Tie Fighter", 5, 200, false, true));
-		board.add(new Colored("Echo Base", 6, 100, false, true));
+		board.add(new Colored("Echo Base", "Hoth", 6, 100, false, true));
 		board.add(new Nonpurchaseable("Chance", 7, false));
-		board.add(new Colored("Frozen Plains", 8, 100, false, true));
-		board.add(new Colored("North Ridge", 9, 120, false, true));
+		board.add(new Colored("Frozen Plains", "Hoth", 8, 100, false, true));
+		board.add(new Colored("North Ridge", "Hoth", 9, 120, false, true));
 		board.add(new Nonpurchaseable("Jail", 10, false));
 		board.add(new Colored("Lars Homestead", 11, 140, false, true));
 		board.add(new Noncolored("Reactor Core", 12, 150, false, true));
