@@ -1,5 +1,7 @@
-import java.util.*;
-public class Runner {
+
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Runner2 {
 	static Scanner player = new Scanner(System.in);
 	static ArrayList<Square> board = new ArrayList<Square>();
 	static ArrayList<String>ownedProp = new ArrayList<String>();
@@ -18,6 +20,7 @@ public class Runner {
 		int roll;
 		int position = 0;
 		int wallet = 1500;
+		boolean back = false;
 		while(true) {
 			System.out.println("\nRoll Dice");
 			if(player.hasNextLine()) {
@@ -26,11 +29,24 @@ public class Runner {
 				dice2 = (int)(Math.random()*6 + 1);
 				roll = dice1 + dice2;
 				if((position + roll) >= 40) {
-					wallet += 200;
-					System.out.println("You received $200 for passing/landing on go");
-					System.out.println("Your balance is $" + wallet);
+					if(back == false) {
+						wallet += 200;
+						System.out.println("You received $200 for passing/landing on go");
+						System.out.println("Your balance is $" + wallet);
+					}
 				}
-				position = (position + roll)%40;
+				if(back == false) {
+					position = (position + roll)%40;
+					if(position == 10) {
+						back = true;
+					}
+				} else {
+					position = (position - roll)%40;
+					if(position == 10) {
+						back = false;
+					}
+				}
+				
 				System.out.println("You rolled " + roll + "\tYou landed on " + board.get(position).getName());
 				if(board.get(position).getCanBuy() == true) {
 					if(((Purchaseable) board.get(position)).getPurchased() == false) {
@@ -67,9 +83,9 @@ public class Runner {
 						System.out.println("You do not have enough money to pay for Luxary Tax");
 					}
 				}
-			}	
-		}	
-	}	
+			}
+		}
+	}
 	public static void makeSquareStandard() {
 		board.add(new Nonpurchaseable("Go", 0, false));
 		board.add(new Colored("Mediterranean Avenue", "Brown", 1, 60, false, true));
