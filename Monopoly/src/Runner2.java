@@ -41,7 +41,11 @@ public class Runner2 {
 						back = true;
 					}
 				} else {
-					position = (position - roll)%40;
+					if(position - roll < 0) {
+						position = position - roll + 40;
+					} else {
+						position = (position - roll);
+					}
 					if(position == 10) {
 						back = false;
 					}
