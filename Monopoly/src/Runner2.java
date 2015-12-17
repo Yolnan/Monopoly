@@ -57,6 +57,7 @@ public class Runner2 {
 				}
 				if(warp == 10) {
 					position = 10;
+					back = false;
 					System.out.println("\tYou landed on " + board.get(position).getName());
 				} else {
 					System.out.println("You rolled " + roll + "\tYou landed on " + board.get(position).getName());
