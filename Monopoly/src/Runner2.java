@@ -21,6 +21,7 @@ public class Runner2 {
 		int position = 0;
 		int wallet = 1500;
 		boolean back = false;
+		int warp = 0;
 		while(true) {
 			System.out.println("\nRoll Dice");
 			if(player.hasNextLine()) {
@@ -28,6 +29,10 @@ public class Runner2 {
 				dice1 = (int)(Math.random()*6 + 1);
 				dice2 = (int)(Math.random()*6 + 1);
 				roll = dice1 + dice2;
+				if(warp == 0) {
+					roll = 10;
+				}
+				warp++;
 				if((position + roll) >= 40) {
 					if(back == false) {
 						wallet += 200;
@@ -50,8 +55,12 @@ public class Runner2 {
 						back = false;
 					}
 				}
-				
-				System.out.println("You rolled " + roll + "\tYou landed on " + board.get(position).getName());
+				if(warp == 10) {
+					position = 10;
+					System.out.println("\tYou landed on " + board.get(position).getName());
+				} else {
+					System.out.println("You rolled " + roll + "\tYou landed on " + board.get(position).getName());
+				}
 				if(board.get(position).getCanBuy() == true) {
 					if(((Purchaseable) board.get(position)).getPurchased() == false) {
 						System.out.println("Buy " + board.get(position).getName() + " for $" + ((Purchaseable) board.get(position)).getPrice());
